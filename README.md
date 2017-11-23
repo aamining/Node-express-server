@@ -1,3 +1,5 @@
+# How to set up routes
+
 Making new directory 'express-server'
 
 yarn init -y
@@ -136,3 +138,38 @@ yarn add ejs
 ```
 
 from express.com -> guide -> using template engine
+
+creating views ->Toys folders and add index.ejs file inside toys folder
+
+```
+<html>
+<head>
+<title>Toys</title>
+
+</head>
+<body>
+
+<h1>Toys</h1>
+<script>
+
+</script>
+
+</body>
+</html>
+
+```
+to be able to see inside index.ejs we need to add to server :
+
+```
+app.set('views', path.join(__dirname, 'views'));
+app.set('view engine', 'ejs');
+
+```
+
+and
+
+```
+app.get('/', (req, res) => {res.render('toys/index')
+});
+
+```

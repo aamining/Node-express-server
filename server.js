@@ -11,6 +11,11 @@ app.all('/', function (req, res, next) {
   next() // pass control to the next handler
 });
 
+app.get('/', (req, res) => {
+  // res.send('Home#index')
+  res.render('toys/index')
+});
+
 app.use('/', routes);
 
 app.listen(3000, () => console.log('Example app listening on port 3000!'))
