@@ -76,6 +76,63 @@ to start the app no longer use node appname to Start the app
   app.all('/', function (req, res, next) {
   console.log('Accessing the secret section ...')
   next() // pass control to the next handler
-})
+  })
 
   ```
+creating routes folder and index.js and toys.js files in to it
+
+changing entire server.js file to like this:
+
+```
+const express = require('express');
+const path = require ('path');
+const routes = require('./routes');
+const app = express();
+
+app.set('views', path.join(__dirname, 'views'));
+app.set('view engine', 'ejs');
+
+app.all('/', function (req, res, next) {
+  console.log('Accessing the secret section ...')
+  next() // pass control to the next handler
+});
+
+app.use('/', routes);
+
+app.listen(3000, () => console.log('Example app listening on port 3000!'))
+
+
+```
+changing entire toys.js file (inside routes folder) to like this:
+
+```
+const express = require('express')
+let router = express.Router()
+
+
+
+router.get('/toys', (req, res) => res.send('Toys#index'))
+
+router.get('/toys/:id', (req, res) => res.send('req.params.id'))
+
+router.post('/toys', (req, res) => res.send('This is a Post\n'))
+
+module.exports = router;
+
+```
+
+put this line inside index.js (inside the routes folder)
+
+```
+module.exports=[require("./toys")]
+
+```
+
+# Using template engines with Express
+
+```
+yarn add ejs
+
+```
+
+from express.com -> guide -> using template engine
